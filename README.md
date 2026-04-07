@@ -2,8 +2,6 @@
 
 A progressive web app for previewing Google Fonts on real sample content, in real-time, with no build tools or dependencies.
 
-![GFView](https://fonts.gstatic.com/s/i/short-logo/googlefonts/v1/24px.svg)
-
 ---
 
 ## Features
@@ -158,4 +156,4 @@ The app uses `dvh` units, `backdrop-filter`, and CSS custom properties — all b
 
 ## License
 
-MIT — use freely for personal or commercial projects. Fonts are served from Google Fonts and subject to their respective licenses (mostly SIL Open Font License).
+Apache 2.0
