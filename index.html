@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="GFView — Preview Google Fonts on real content in real-time." />
+  <meta name="theme-color" content="#0f0f13" id="theme-color-meta" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="GFView" />
+
+  <title>GFView — Google Fonts Viewer</title>
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="stylesheet" href="./app.css" />
+</head>
+<body>
+
+<div id="app">
+
+  <!-- == HEADER ========================================== -->
+  <header id="header">
+
+    <!-- Logo -->
+    <a class="logo-wrap" href="#" aria-label="GFView home">
+      <div class="logo-icon" aria-hidden="true">Gf</div>
+      <span class="logo-name">GF<span>View</span></span>
+    </a>
+
+    <!-- Header Actions -->
+    <div class="header-actions">
+
+      <!-- Sidebar toggle (mobile only) -->
+      <button class="icon-btn" id="sidebar-toggle" aria-label="Open font selector">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7"/>
+          <rect x="14" y="3" width="7" height="7"/>
+          <rect x="14" y="14" width="7" height="7"/>
+          <rect x="3" y="14" width="7" height="7"/>
+        </svg>
+      </button>
+
+      <!-- Menu button + Dropdown -->
+      <div style="position:relative;">
+        <button class="icon-btn" id="menu-btn" aria-label="Open menu" aria-haspopup="true" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="5" r="1" fill="currentColor"/>
+            <circle cx="12" cy="12" r="1" fill="currentColor"/>
+            <circle cx="12" cy="19" r="1" fill="currentColor"/>
+          </svg>
+        </button>
+
+        <div class="dropdown" id="dropdown" role="menu">
+          <button class="dropdown-item" id="theme-toggle" role="menuitem">
+            <svg class="theme-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"/>
+              <line x1="12" y1="1" x2="12" y2="3"/>
+              <line x1="12" y1="21" x2="12" y2="23"/>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+              <line x1="1" y1="12" x2="3" y2="12"/>
+              <line x1="21" y1="12" x2="23" y2="12"/>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+            <span id="theme-label">Switch to Light Mode</span>
+          </button>
+
+          <div class="dropdown-divider"></div>
+
+          <button class="dropdown-item" id="settings-btn" role="menuitem">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+            </svg>
+            Settings
+          </button>
+
+          <div class="dropdown-divider"></div>
+
+          <button class="dropdown-item" id="about-btn" role="menuitem">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="8" x2="12" y2="12"/>
+              <line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            About GFView
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- == SIDEBAR ========================================= -->
+  <aside id="sidebar" aria-label="Font controls">
+
+    <!-- Headline Font -->
+    <div class="sidebar-section">
+      <div class="sidebar-label">Headline Font</div>
+      <div id="hl-filter-pills" class="filter-pills" role="group" aria-label="Filter headline fonts by category">
+        <!-- populated by JS -->
+      </div>
+      <div class="font-selector-wrap">
+        <label for="headline-select">Select a typeface</label>
+        <select id="headline-select" class="font-select" aria-label="Headline font" size="5">
+          <!-- populated by JS -->
+        </select>
+      </div>
+      <button class="font-preview-badge" id="headline-badge" aria-live="polite" aria-label="Open Roboto Slab on Google Fonts">
+        <span class="badge-name">Roboto Slab</span>
+        <span class="badge-link-icon" aria-hidden="true">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </span>
+      </button>
+
+      <div class="size-control">
+        <label for="hl-size">
+          Headline Size
+          <span id="hl-size-display">42px</span>
+        </label>
+        <input type="range" id="hl-size" min="20" max="80" value="42" step="1" aria-label="Headline font size" />
+      </div>
+    </div>
+
+    <!-- Body Font -->
+    <div class="sidebar-section">
+      <div class="sidebar-label">Body Font</div>
+      <div id="bd-filter-pills" class="filter-pills" role="group" aria-label="Filter body fonts by category">
+        <!-- populated by JS -->
+      </div>
+      <div class="font-selector-wrap">
+        <label for="body-select">Select a typeface</label>
+        <select id="body-select" class="font-select" aria-label="Body font" size="5">
+          <!-- populated by JS -->
+        </select>
+      </div>
+      <button class="font-preview-badge" id="body-badge" aria-live="polite" aria-label="Open Source Sans 3 on Google Fonts">
+        <span class="badge-name">Source Sans 3</span>
+        <span class="badge-link-icon" aria-hidden="true">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </span>
+      </button>
+
+      <div class="size-control">
+        <label for="bd-size">
+          Body Size
+          <span id="bd-size-display">17px</span>
+        </label>
+        <input type="range" id="bd-size" min="12" max="26" value="17" step="1" aria-label="Body font size" />
+      </div>
+    </div>
+
+    <!-- Footer hint -->
+    <div style="margin-top:auto; padding-top:12px; font-size:0.75rem; color:var(--text-muted); line-height:1.5;">
+      Use ↑ ↓ arrow keys or scroll to browse fonts in real-time.
+    </div>
+
+  </aside>
+
+  <!-- Sidebar backdrop (mobile) -->
+  <div id="sidebar-overlay" aria-hidden="true"></div>
+
+  <!-- == MAIN ============================================ -->
+  <main id="main">
+
+    <p class="sample-kicker">Typography Preview</p>
+
+    <h1 id="sample-headline"></h1>
+
+    <div class="sample-meta">
+      <div class="meta-avatar" aria-hidden="true"></div>
+      <div class="meta-text">
+        <strong>GFView Editorial</strong><br />
+        Sample content for font previewing · 6 min read
+      </div>
+    </div>
+
+    <div id="sample-body" class="sample-body"></div>
+
+  </main>
+
+</div><!-- /#app -->
+
+<!-- == ABOUT DIALOG ======================================== -->
+<div id="about-overlay" role="dialog" aria-modal="true" aria-labelledby="about-title">
+  <div class="about-dialog">
+
+    <button class="icon-btn about-close" id="about-close" aria-label="Close">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+
+    <div class="about-logo">
+      <div class="logo-icon" aria-hidden="true">Gf</div>
+      <span class="logo-name" id="about-title">GF<span>View</span></span>
+    </div>
+
+    <p>
+      <strong>GFView</strong> is a progressive web app for previewing
+      <a href="https://fonts.google.com" target="_blank" rel="noopener">Google Fonts</a>
+      on real sample content — instantly, in real-time, with no page reloads.
+    </p>
+
+    <p>
+      Browse over 60 curated typefaces using the sidebar. Select separate fonts for your headline and body copy, adjust sizes with the sliders, and toggle between light and dark mode to see how fonts behave in different contexts.
+    </p>
+
+    <p>
+      Fonts are loaded on-demand directly from the Google Fonts API and cached by the service worker for offline use.
+    </p>
+
+    <div class="about-footer">
+      <button class="btn-primary" id="about-close-btn">Got it</button>
+    </div>
+  </div>
+</div>
+
+<!-- == SETTINGS DIALOG ===================================== -->
+<div id="settings-overlay" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+  <div class="settings-dialog">
+
+    <div class="settings-header">
+      <h2 id="settings-title">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+        Settings
+      </h2>
+      <button class="icon-btn" id="settings-close" aria-label="Close settings">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="settings-body">
+
+      <!-- Font Size Unit -->
+      <div class="settings-field">
+        <div class="settings-field-header">
+          <label>Font Size Unit</label>
+          <span class="settings-field-hint">Affects headline &amp; body size sliders</span>
+        </div>
+        <div class="unit-toggle" role="group" aria-label="Font size unit">
+          <div class="unit-btns">
+            <button class="unit-btn active" id="unit-px" data-unit="px" aria-pressed="true">px</button>
+            <button class="unit-btn" id="unit-pt" data-unit="pt" aria-pressed="false">pt</button>
+          </div>
+          <p class="unit-desc" id="unit-desc">Sizes displayed in <strong>pixels (px)</strong> — standard screen unit.</p>
+        </div>
+      </div>
+
+      <div class="settings-divider"></div>
+
+      <!-- Headline Text -->
+      <div class="settings-field">
+        <div class="settings-field-header">
+          <label for="settings-headline">Headline Text</label>
+          <span class="settings-field-hint">Markdown supported</span>
+        </div>
+        <textarea id="settings-headline" class="settings-textarea" rows="3" spellcheck="false" placeholder="Enter headline text…"></textarea>
+      </div>
+
+      <!-- Body Text -->
+      <div class="settings-field">
+        <div class="settings-field-header">
+          <label for="settings-body">Body Text</label>
+          <span class="settings-field-hint">Markdown supported — headings, **bold**, *italic*, &gt; blockquote</span>
+        </div>
+        <textarea id="settings-body" class="settings-textarea settings-textarea--tall" spellcheck="false" placeholder="Enter body text with Markdown…"></textarea>
+      </div>
+
+    </div>
+
+    <div class="settings-footer">
+      <button class="btn-ghost" id="settings-reset">Reset to defaults</button>
+      <div class="settings-footer-right">
+        <button class="btn-ghost" id="settings-cancel">Cancel</button>
+        <button class="btn-primary" id="settings-apply">Apply</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- == SPECIMEN DIALOG ===================================== -->
+<div id="specimen-overlay" role="dialog" aria-modal="true" aria-labelledby="specimen-title">
+  <div class="specimen-dialog">
+
+    <div class="specimen-header">
+      <div class="specimen-header-left">
+        <div class="specimen-gf-logo" aria-hidden="true">G</div>
+        <div>
+          <div class="specimen-eyebrow">Google Fonts</div>
+          <h2 class="specimen-title" id="specimen-title">Roboto Slab</h2>
+        </div>
+      </div>
+      <div class="specimen-header-right">
+        <a class="btn-ghost specimen-open-link" id="specimen-open-link" href="#" target="_blank" rel="noopener">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          <span>View on Google Fonts</span>
+        </a>
+        <button class="icon-btn" id="specimen-close" aria-label="Close">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="specimen-body" id="specimen-body-wrap">
+
+      <!-- Loading state -->
+      <div class="specimen-loading" id="specimen-loading" aria-live="polite">
+        <div class="specimen-spinner" aria-hidden="true"></div>
+        <span>Loading font…</span>
+      </div>
+
+      <!-- Specimen card (populated by JS) -->
+      <div class="specimen-card" id="specimen-card" hidden>
+
+        <div class="specimen-meta" id="specimen-meta">
+          <!-- category chip + style count injected by JS -->
+        </div>
+
+        <!-- Pangram at multiple sizes -->
+        <div class="specimen-pangrams" id="specimen-pangrams">
+          <!-- rows injected by JS -->
+        </div>
+
+        <!-- Alphabet -->
+        <div class="specimen-section">
+          <div class="specimen-section-label">Glyphs</div>
+          <div class="specimen-glyphs" id="specimen-glyphs">
+            AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz 0123456789 !?&@#$%
+          </div>
+        </div>
+
+        <!-- Styles grid -->
+        <div class="specimen-section">
+          <div class="specimen-section-label">Styles</div>
+          <div class="specimen-styles" id="specimen-styles">
+            <!-- injected by JS -->
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="specimen-actions">
+          <a class="specimen-download-btn" id="specimen-download" href="#" target="_blank" rel="noopener" aria-label="Download font family">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download Family
+          </a>
+          <a class="btn-ghost specimen-page-link" id="specimen-page-link" href="#" target="_blank" rel="noopener">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Full Specimen Page
+          </a>
+        </div>
+
+      </div><!-- /.specimen-card -->
+
+    </div><!-- /.specimen-body -->
+  </div>
+</div>
+
+<script src="./config.js"></script>
+<script src="./app.js"></script>
+</body>
+</html>
